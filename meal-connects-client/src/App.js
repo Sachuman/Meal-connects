@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import Details from "./components/Details";
 import Display from "./components/Display";
 import Navbar from "./components/Navbar";
+import ImpactTracker from "./components/ImpactTracker";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
+        <Route path="tracker" element={<ImpactTracker />}/>
         <Route path="/details" element={<Details />}/>
         <Route path="/display" element={<Display />}/> 
 

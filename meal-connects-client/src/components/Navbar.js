@@ -49,6 +49,12 @@ function Navbar(){
                             Details
                         </Link>
                     </li>  
+
+                    <li className="nav-item">
+                        <Link to='/tracker' className="nav-links" onClick={closeMobileMenu}>
+                            Impact Tracker
+                        </Link>
+                    </li>  
                     
                     
                     
