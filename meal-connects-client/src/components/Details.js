@@ -25,24 +25,47 @@ export default function Details() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const existingOrgs = JSON.parse(localStorage.getItem('organizations') || '[]');
+    
+    // Create organization object based on user input
     const newOrg = {
-      id: Date.now(),
       name: formData.orgName,
-      type: isDonor ? 'restaurant' : 'shelter', // Decide based on role
-      peopleServed: parseInt(formData.peopleServed),
       address: formData.address,
+      peopleServed: parseInt(formData.peopleServed, 10),
       contactPerson: formData.contactPerson,
       phoneNumber: formData.phoneNumber,
       email: formData.email,
-      foodType: isDonor ? formData.foodType : null, // Add food details for donors
-      foodAmount: isDonor ? formData.foodAmount : null,
+      ...(isDonor && {
+        foodType: formData.foodType,
+        foodAmount: parseInt(formData.foodAmount, 10),
+      }),
     };
-    const updatedOrgs = [...existingOrgs, newOrg];
-    localStorage.setItem('organizations', JSON.stringify(updatedOrgs));
-
-    navigate(isDonor ? '/displayDonors' : '/displayShelters'); // Redirect based on role
+  
+    try {
+      const response = await fetch(`http://localhost:5000${isDonor ? '/donors' : '/shelters'}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newOrg),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to register organization');
+      }
+  
+      // Redirect based on the organization type
+      if (isDonor) {
+        navigate('/display/donors');
+      } else {
+        navigate('/display/shelters');
+      }
+    } catch (error) {
+      console.error('Failed to register organization:', error);
+      // Optionally show an error message to the user
+    }
   };
+  
 
   return (
     <div className="container mx-auto px-4 py-8">
