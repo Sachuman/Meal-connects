@@ -2,23 +2,57 @@ import React, { useState, useEffect } from 'react'
 
 export default function ImpactTracker() {
   const [impactData, setImpactData] = useState({
-    foodSaved: 0, // in kilograms or pounds
+    foodSaved: 0, 
     mealsProvided: 0, 
-    co2Reduction: 0, // in kilograms or pounds of CO2
-    donationsMade: 0, // total donations by restaurants
+    co2Reduction: 0, 
   })
 
-  useEffect(() => {
-    // Simulate fetching impact data from a database or API
-    const fetchedImpactData = JSON.parse(localStorage.getItem('impactData') || '{}')
+  const [graphData, setGraphData] = useState([]);
 
-    // Assuming impactData contains: foodSaved, mealsProvided, co2Reduction, donationsMade
-    setImpactData({
-      foodSaved: fetchedImpactData.foodSaved || 0,
-      mealsProvided: fetchedImpactData.mealsProvided || 0,
-      co2Reduction: fetchedImpactData.co2Reduction || 0,
-      donationsMade: fetchedImpactData.donationsMade || 0,
-    })
+  //writing code for fetching data from the server and getting the data for impact
+  const fetchedFoodData = async() =>{
+    try{
+      const response = await fetch('http://localhost:5000/donors/');
+      const data = await response.json();
+      const foodSaved = data.reduce((total, donor) => total + donor.foodAmount, 0); //defautl value is 0
+      return foodSaved;
+
+    }
+    catch(err){
+      console.log(err);
+    } 
+
+  }
+
+  const fetchedShelterData = async() =>{
+    try{
+      const response = await fetch('http://localhost:5000/shelters/');
+      const data = await response.json();
+      const mealsProvided = data.reduce((total, shelter) => total + shelter.peopleServed, 0); //defautl value is 0
+      return mealsProvided;
+
+    }
+    catch(err){
+      console.log(err);
+    } 
+
+  }
+
+  useEffect(() => {
+    const fetchImpactData = async () => {
+      const foodSaved = await fetchedFoodData();
+      const mealsProvided = await fetchedShelterData();
+      console.log(mealsProvided);
+      const co2Reduction = foodSaved * 2.5; // lets assume 2.5 kg of CO2 saved per kg of food
+
+      setImpactData({
+        foodSaved,
+        mealsProvided,
+        co2Reduction,
+      })
+    }
+    fetchImpactData();
+
   }, [])
 
   return (
@@ -47,12 +81,6 @@ export default function ImpactTracker() {
           <p className="text-gray-600 mt-2">of CO2 saved</p>
         </div>
 
-        {/* Donations Made */}
-        <div className="bg-purple-100 shadow-lg rounded-lg p-6 text-center">
-          <h2 className="text-2xl font-bold text-purple-600">Donations Made</h2>
-          <p className="text-5xl font-bold text-gray-800 mt-4">{impactData.donationsMade}</p>
-          <p className="text-gray-600 mt-2">total donations by restaurants</p>
-        </div>
       </div>
       
       {/* Optionally add graphs or charts for visualizing progress */}

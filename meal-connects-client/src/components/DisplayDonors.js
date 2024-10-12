@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function DisplayDonors() {
   const [donors, setDonors] = useState([]);
-  const [error, setError] = useState(null); // Add state for error handling
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     const fetchDonors = async () => {

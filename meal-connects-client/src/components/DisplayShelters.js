@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function DisplayShelters() {
   const [shelters, setShelters] = useState([]);
-  const [error, setError] = useState(null); // Add state for error handling
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchShelters = async () => {
