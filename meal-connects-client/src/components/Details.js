@@ -41,7 +41,7 @@ export default function Details() {
     };
   
     try {
-      const response = await fetch(`http://localhost:5000${isDonor ? '/donors' : '/shelters'}`, {
+      const response = await fetch(`http://localhost:5001${isDonor ? '/donors' : '/shelters'}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

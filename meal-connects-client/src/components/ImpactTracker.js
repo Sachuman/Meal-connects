@@ -12,7 +12,7 @@ export default function ImpactTracker() {
   //writing code for fetching data from the server and getting the data for impact
   const fetchedFoodData = async() =>{
     try{
-      const response = await fetch('http://localhost:5000/donors/');
+      const response = await fetch('http://localhost:5001/donors/');
       const data = await response.json();
       const foodSaved = data.reduce((total, donor) => total + donor.foodAmount, 0); //defautl value is 0
       return foodSaved;
@@ -26,7 +26,7 @@ export default function ImpactTracker() {
 
   const fetchedShelterData = async() =>{
     try{
-      const response = await fetch('http://localhost:5000/shelters/');
+      const response = await fetch('http://localhost:5001/shelters/');
       const data = await response.json();
       const mealsProvided = data.reduce((total, shelter) => total + shelter.peopleServed, 0); //defautl value is 0
       return mealsProvided;

@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
             email: req.body.email,
             foodType: req.body.foodType,
             foodAmount: req.body.foodAmount,
+            createdAt: req.body.createdAt,
         });
         const newDonor = await donor.save();
         res.status(201).json(newDonor);

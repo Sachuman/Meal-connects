@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
             contactPerson: req.body.contactPerson,
             phoneNumber: req.body.phoneNumber,
             email: req.body.email,
+            createdAt: req.body.createdAt,
         });
         const newShelter = await shelter.save();
         res.status(201).json(newShelter);

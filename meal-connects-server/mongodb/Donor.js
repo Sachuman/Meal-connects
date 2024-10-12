@@ -35,6 +35,7 @@ const donorSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  
 }, { timestamps: true });
 
 const Donor = mongoose.model('Donor', donorSchema);

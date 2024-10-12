@@ -7,7 +7,7 @@ export default function DisplayShelters() {
   useEffect(() => {
     const fetchShelters = async () => {
       try {
-        const response = await fetch('http://localhost:5000/shelters/');
+        const response = await fetch('http://localhost:5001/shelters/');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -24,7 +24,7 @@ export default function DisplayShelters() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/shelters/${id}`, {
+      await fetch(`http://localhost:5001/shelters/${id}`, {
         method: 'DELETE',
       });
       setShelters(shelters.filter(shelter => shelter._id !== id));

@@ -7,7 +7,7 @@ export default function DisplayDonors() {
   useEffect(() => {
     const fetchDonors = async () => {
       try {
-        const response = await fetch('http://localhost:5000/donors/');
+        const response = await fetch('http://localhost:5001/donors/');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -24,7 +24,7 @@ export default function DisplayDonors() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/donors/${id}`, {
+      await fetch(`http://localhost:5001/donors/${id}`, {
         method: 'DELETE',
       });
       setDonors(donors.filter(donor => donor._id !== id));
