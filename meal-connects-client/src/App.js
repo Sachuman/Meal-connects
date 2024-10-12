@@ -1,27 +1,26 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'
+import './App.css';
 import Home from "./components/Home";
 import Details from "./components/Details";
-import Display from "./components/Display";
+import DisplayDonors from "./components/DisplayDonors"; // Renamed import for donor display
+import DisplayShelters from "./components/DisplayShelters"; // New import for shelter display
 import Navbar from "./components/Navbar";
-
+import ImpactTracker from "./components/ImpactTracker";
 
 function App() {
- 
-
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/details" element={<Details />}/>
-        <Route path="/display" element={<Display />}/> 
-
+        <Route path="/" element={<Home />} />
+        <Route path="tracker" element={<ImpactTracker />} />
+        <Route path="/details" element={<Details />} />
+        <Route path="/display/donors" element={<DisplayDonors />} /> {/* Route for donor display */}
+        <Route path="/display/shelters" element={<DisplayShelters />} /> {/* Route for shelter display */}
+        <Route path="/tracker" element={<ImpactTracker />} />
       </Routes>
     </Router>
-    // I would like to thank Youtube to help me learn react js! The react js documentation is also good!
-    
   );
 }
 
