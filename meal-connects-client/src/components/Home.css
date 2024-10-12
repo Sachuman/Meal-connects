@@ -4,13 +4,13 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to right, #f0faff, #e0f7fa);
+    
   }
   
   .home-card {
     width: 100%;
     max-width: 600px;
-    background-color: #fff;
+    background: linear-gradient(to right, #f0faff, #e0f7fa);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;

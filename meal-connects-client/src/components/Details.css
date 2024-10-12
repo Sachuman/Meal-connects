@@ -1,0 +1,73 @@
+.backround{
+    background: white;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    min-height: 100vh; /* Full height of the viewport */
+    background-color: white; /* Or any background you prefer */
+    position: relative;
+}
+.form-container {
+    max-width: 600px;
+    padding: 20px;
+    background: linear-gradient(to right, #f0faff, #e0f7fa);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure it doesn't exceed the viewport on smaller screens */
+    transform: translateY(-100px); /* Move up by 20px */
+  }
+  
+  .form-wrapper h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .role-selection {
+    margin-bottom: 20px;
+  }
+  
+  .role-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .role-button.selected {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
