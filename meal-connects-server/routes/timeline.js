@@ -82,8 +82,8 @@ const getTimelineData = async () => {
     return Object.keys(timelineTotals).map(date => ({
         date,
         "Food Saved (kg)": timelineTotals[date].totalFoodSaved,
-        "People Served": timelineTotals[date].totalPeopleServed,
-        "Carbon Emissions Saved (kg)": timelineTotals[date].totalCarbonSaved
+        "Meals Provided": timelineTotals[date].totalPeopleServed,
+        "CO2 Emissions Reduced (kg)": timelineTotals[date].totalCarbonSaved
     }));
 };
 

@@ -1,0 +1,56 @@
+.container {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 2rem; 
+}
+
+h1 {
+    font-size: 2.25rem; /* 3xl size */
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 1.5rem; /* Space between grid items */
+}
+
+.card {
+    background: #e6ffed; /* Light green for food saved */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    padding: 1.5rem; /* Padding for card */
+    text-align: center; /* Center text */
+}
+
+.card h2 {
+    font-size: 1.5rem; /* 2xl size */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #38a169; /* Green color */
+}
+
+.card p {
+    font-size: 3rem; /* 5xl size */
+    font-weight: bold;
+    color: #4a5568; /* Gray color */
+    margin-top: 1rem; /* Margin above */
+}
+
+.text-center {
+    text-align: center; /* Center text */
+}
+
+.text-gray-600 {
+    color: #718096; /* Gray text */
+}
+
+.mt-12 {
+    margin-top: 3rem; /* Margin top */
+}
+
+.mb-4 {
+    margin-bottom: 1rem; /* Margin bottom */
+}

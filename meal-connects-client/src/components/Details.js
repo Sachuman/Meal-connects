@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Details.css'; // Import the CSS file
 
 export default function Details() {
   const [isDonor, setIsDonor] = useState(null); // Track whether they are a donor or taker
   const [formData, setFormData] = useState({
     orgName: '',
-    peopleServed: '',
     address: '',
     contactPerson: '',
     phoneNumber: '',
@@ -30,7 +30,6 @@ export default function Details() {
     const newOrg = {
       name: formData.orgName,
       address: formData.address,
-      peopleServed: parseInt(formData.peopleServed, 10),
       contactPerson: formData.contactPerson,
       phoneNumber: formData.phoneNumber,
       email: formData.email,
@@ -41,7 +40,7 @@ export default function Details() {
     };
   
     try {
-      const response = await fetch(`http://localhost:5000${isDonor ? '/donors' : '/shelters'}`, {
+      const response = await fetch(`http://localhost:5001${isDonor ? '/donors' : '/shelters'}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,22 +65,21 @@ export default function Details() {
     }
   };
   
-
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="w-full max-w-2xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="px-6 py-4">
-          <h1 className="text-2xl font-bold mb-2">Register Your Organization</h1>
-          <p className="text-gray-600 mb-4">Are you a donor or a shelter?</p>
-          <div className="mb-4">
+    <div className="background">
+      <div className="form-container">
+        <div className="form-wrapper">
+          <h1>Register Your Organization</h1>
+          <p>Are you a donor or a shelter?</p>
+          <div className="role-selection">
             <button
-              className={`mr-4 py-2 px-4 rounded ${isDonor ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+              className={`role-button ${isDonor ? 'selected' : ''}`}
               onClick={() => setIsDonor(true)}
             >
               Donor (Restaurant)
             </button>
             <button
-              className={`py-2 px-4 rounded ${!isDonor && isDonor !== null ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}
+              className={`role-button ${!isDonor && isDonor !== null ? 'selected' : ''}`}
               onClick={() => setIsDonor(false)}
             >
               Shelter
@@ -90,10 +88,8 @@ export default function Details() {
 
           {isDonor !== null && (
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="orgName" className="block text-sm font-medium text-gray-700">
-                  Organization Name
-                </label>
+              <div className="form-group">
+                <label htmlFor="orgName">Organization Name</label>
                 <input
                   id="orgName"
                   name="orgName"
@@ -101,60 +97,36 @@ export default function Details() {
                   value={formData.orgName}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="peopleServed" className="block text-sm font-medium text-gray-700">
-                  Number of People Served
-                </label>
-                <input
-                  id="peopleServed"
-                  name="peopleServed"
-                  type="number"
-                  value={formData.peopleServed}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
               </div>
 
               {isDonor && (
                 <>
-                  <div>
-                    <label htmlFor="foodType" className="block text-sm font-medium text-gray-700">
-                      Food Type
-                    </label>
+                  <div className="form-group">
+                    <label htmlFor="foodType">Food Type</label>
                     <input
                       id="foodType"
                       name="foodType"
                       type="text"
                       value={formData.foodType}
                       onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                     />
                   </div>
-                  <div>
-                    <label htmlFor="foodAmount" className="block text-sm font-medium text-gray-700">
-                      Amount of Food (kg)
-                    </label>
+                  <div className="form-group">
+                    <label htmlFor="foodAmount">Amount of Food (kg)</label>
                     <input
                       id="foodAmount"
                       name="foodAmount"
                       type="number"
                       value={formData.foodAmount}
                       onChange={handleChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                     />
                   </div>
                 </>
               )}
 
-              <div>
-                <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-                  Address
-                </label>
+              <div className="form-group">
+                <label htmlFor="address">Address</label>
                 <input
                   id="address"
                   name="address"
@@ -162,14 +134,11 @@ export default function Details() {
                   value={formData.address}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
               </div>
 
-              <div>
-                <label htmlFor="contactPerson" className="block text-sm font-medium text-gray-700">
-                  Contact Person
-                </label>
+              <div className="form-group">
+                <label htmlFor="contactPerson">Contact Person</label>
                 <input
                   id="contactPerson"
                   name="contactPerson"
@@ -177,14 +146,11 @@ export default function Details() {
                   value={formData.contactPerson}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
               </div>
 
-              <div>
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
-                  Phone Number
-                </label>
+              <div className="form-group">
+                <label htmlFor="phoneNumber">Phone Number</label>
                 <input
                   id="phoneNumber"
                   name="phoneNumber"
@@ -192,14 +158,11 @@ export default function Details() {
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
               </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email
-                </label>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
                 <input
                   id="email"
                   name="email"
@@ -207,13 +170,12 @@ export default function Details() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                className="submit-button"
               >
                 Submit Registration
               </button>
