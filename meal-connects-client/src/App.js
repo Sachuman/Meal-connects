@@ -8,6 +8,7 @@ import DisplayShelters from "./components/DisplayShelters"; // New import for sh
 import Navbar from "./components/Navbar";
 import ImpactTracker from "./components/ImpactTracker";
 import GoogleMaps from "./components/GoogleMaps";
+import ChatbotGemini from "./components/ChatbotGemini";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/maps" element={<GoogleMaps />} />
 
       </Routes>
+      <ChatbotGemini />
     </Router>
   );
 }
