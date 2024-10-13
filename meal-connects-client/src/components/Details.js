@@ -6,7 +6,6 @@ export default function Details() {
   const [isDonor, setIsDonor] = useState(null); // Track whether they are a donor or shelter
   const [formData, setFormData] = useState({
     orgName: '',
-    peopleServed: '',
     address: '',
     contactPerson: '',
     phoneNumber: '',
@@ -31,7 +30,6 @@ export default function Details() {
     const newOrg = {
       name: formData.orgName,
       address: formData.address,
-      peopleServed: parseInt(formData.peopleServed, 10),
       contactPerson: formData.contactPerson,
       phoneNumber: formData.phoneNumber,
       email: formData.email,
@@ -68,6 +66,7 @@ export default function Details() {
   };
 
   return (
+<<<<<<< Updated upstream
     <div className = "backround">
     <div className="form-container">
       <div className="form-wrapper">
@@ -86,6 +85,125 @@ export default function Details() {
           >
             Shelter
           </button>
+=======
+    <div className="backround">
+      <div className="form-container">
+        <div className="form-wrapper">
+          <h1>Register Your Organization</h1>
+  
+          {isDonor === null && (
+            <>
+              <p>Are you a donor or a shelter?</p>
+              <div className="role-selection">
+                <button
+                  className={`role-button ${isDonor ? 'selected' : ''}`}
+                  onClick={() => setIsDonor(true)}
+                >
+                  Donor (Restaurant)
+                </button>
+                <button
+                  className={`role-button ${!isDonor && isDonor !== null ? 'selected' : ''}`}
+                  onClick={() => setIsDonor(false)}
+                >
+                  Shelter
+                </button>
+              </div>
+            </>
+          )}
+  
+          {isDonor !== null && (
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="orgName">Organization Name</label>
+                <input
+                  id="orgName"
+                  name="orgName"
+                  type="text"
+                  value={formData.orgName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {isDonor && (
+                <>
+                  <div className="form-group">
+                    <label htmlFor="foodType">Food Type</label>
+                    <input
+                      id="foodType"
+                      name="foodType"
+                      type="text"
+                      value={formData.foodType}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="foodAmount">Amount of Food (kg)</label>
+                    <input
+                      id="foodAmount"
+                      name="foodAmount"
+                      type="number"
+                      value={formData.foodAmount}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </>
+              )}
+
+              <div className="form-group">
+                <label htmlFor="address">Address</label>
+                <input
+                  id="address"
+                  name="address"
+                  type="text"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+  
+              <div className="form-group">
+                <label htmlFor="contactPerson">Contact Person</label>
+                <input
+                  id="contactPerson"
+                  name="contactPerson"
+                  type="text"
+                  value={formData.contactPerson}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+  
+              <div className="form-group">
+                <label htmlFor="phoneNumber">Phone Number</label>
+                <input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="tel"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+  
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+  
+              <button type="submit" className="submit-button">
+                Submit Registration
+              </button>
+            </form>
+          )}
+>>>>>>> Stashed changes
         </div>
 
         {isDonor !== null && (
@@ -194,6 +312,10 @@ export default function Details() {
         )}
       </div>
     </div>
+<<<<<<< Updated upstream
    </div>
   );
+=======
+  );  
+>>>>>>> Stashed changes
 }

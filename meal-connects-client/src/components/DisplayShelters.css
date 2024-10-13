@@ -1,0 +1,62 @@
+.shelters-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+.no-shelters-message {
+    text-align: center;
+    color: gray;
+}
+
+.shelter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.shelter-card {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0; /* Light gray border */
+}
+
+.shelter-details {
+    padding: 16px;
+}
+
+.shelter-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745; /* Green color for the shelter name */
+    margin-bottom: 10px;
+}
+
+.delete-button {
+    margin-top: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: darkred; /* Darker red on hover */
+}
