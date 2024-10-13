@@ -27,13 +27,15 @@ function Navbar() {
     return (
         <>
             <nav className="navbar">
-                <div className="navbar-container">
+                <div>
                     <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                         <img src={logo} alt="MealConnect Logo" className="navbar-logo-image" />
                     </Link>
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                     </div>
+                </div>
+                <div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                         <li className="nav-item">
                             <Link to='/' className="nav-links" onClick={closeMobileMenu}>

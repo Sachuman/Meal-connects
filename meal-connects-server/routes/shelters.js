@@ -6,7 +6,6 @@ const Shelter = require('../mongodb/Shelter');
 
 
 router.get('/', async (req, res) => {
-
     try {
         const shelters = await Shelter.find();
         res.json(shelters);

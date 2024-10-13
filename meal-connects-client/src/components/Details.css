@@ -20,6 +20,13 @@
     margin-top: -150px; /* Adjust this value to move the container up */
 }
 
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 .form-wrapper h1 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -27,6 +34,8 @@
 
 .role-selection {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .role-button {
@@ -36,6 +45,9 @@
     background-color: #ccc;
     cursor: pointer;
     border-radius: 4px;
+    width: 50%;
+    height: 3rem;
+    font-weight: bold;
 }
 
 .role-button.selected {

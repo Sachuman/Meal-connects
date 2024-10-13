@@ -102,7 +102,7 @@ export default function Details() {
               className={`role-button ${isDonor ? 'selected' : ''}`}
               onClick={() => setIsDonor(true)}
             >
-              Donor (Restaurant)
+              Donor
             </button>
             <button
               className={`role-button ${!isDonor && isDonor !== null ? 'selected' : ''}`}
