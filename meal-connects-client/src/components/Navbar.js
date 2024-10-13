@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import logo from '../assets/MealConnect.jpeg'; // Correct import path
 import './Navbar.css';
-import logo from '../assets/MealConnect.jpeg'; // Correct import path
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -29,11 +28,7 @@ function Navbar() {
         <>
             <nav className="navbar">
                 <div className="navbar-container">
-<<<<<<< Updated upstream
                     <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-=======
-                <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
->>>>>>> Stashed changes
                         <img src={logo} alt="MealConnect Logo" className="navbar-logo-image" />
                     </Link>
                     <div className="menu-icon" onClick={handleClick}>

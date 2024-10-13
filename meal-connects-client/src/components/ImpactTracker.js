@@ -3,26 +3,6 @@ import './ImpactTracker.css'; // Import the CSS file
 
 export default function ImpactTracker() {
   const [impactData, setImpactData] = useState({
-<<<<<<< Updated upstream
-    foodSaved: 0, // in kilograms or pounds
-    mealsProvided: 0, 
-    co2Reduction: 0, // in kilograms or pounds of CO2
-    donationsMade: 0, // total donations by restaurants
-  })
-
-  useEffect(() => {
-    // Simulate fetching impact data from a database or API
-    const fetchedImpactData = JSON.parse(localStorage.getItem('impactData') || '{}')
-
-    // Assuming impactData contains: foodSaved, mealsProvided, co2Reduction, donationsMade
-    setImpactData({
-      foodSaved: fetchedImpactData.foodSaved || 0,
-      mealsProvided: fetchedImpactData.mealsProvided || 0,
-      co2Reduction: fetchedImpactData.co2Reduction || 0,
-      donationsMade: fetchedImpactData.donationsMade || 0,
-    })
-  }, [])
-=======
     foodSaved: 0,
     mealsProvided: 0,
     co2Reduction: 0,
@@ -67,7 +47,6 @@ export default function ImpactTracker() {
     };
     fetchImpactData();
   }, []);
->>>>>>> Stashed changes
 
   return (
     <div className="container">
@@ -94,16 +73,6 @@ export default function ImpactTracker() {
           <p>{impactData.co2Reduction} kg</p>
           <p>of CO2 saved</p>
         </div>
-<<<<<<< Updated upstream
-
-        {/* Donations Made */}
-        <div className="bg-purple-100 shadow-lg rounded-lg p-6 text-center">
-          <h2 className="text-2xl font-bold text-purple-600">Donations Made</h2>
-          <p className="text-5xl font-bold text-gray-800 mt-4">{impactData.donationsMade}</p>
-          <p className="text-gray-600 mt-2">total donations by restaurants</p>
-        </div>
-=======
->>>>>>> Stashed changes
       </div>
 
       {/* Optionally add graphs or charts for visualizing progress */}

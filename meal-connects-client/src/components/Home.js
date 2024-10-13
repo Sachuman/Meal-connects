@@ -15,11 +15,7 @@ export default function Home() {
             Register your organization to get started.
           </p>
           <Link to="details">
-<<<<<<< Updated upstream
-            <button className="home-button">Go to Details</button>
-=======
             <button className="home-button">Register</button>
->>>>>>> Stashed changes
           </Link>
         </div>
       </div>
