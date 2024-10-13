@@ -1,11 +1,36 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Details.css'; // Import the CSS file
+import { useJsApiLoader, StandaloneSearchBox} from '@react-google-maps/api';
+import { useRef } from 'react';
+
 
 export default function Details() {
+
+  const inputRef = useRef(null);
+  
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ['places'],
+  });
+
+ const handleOnPlacesChanged = () => {
+    const places = inputRef.current.getPlaces();
+    if (places && places.length > 0) {
+        const address = places[0].formatted_address;
+        setFormData((prevState) => ({
+            ...prevState,
+            address,
+        }));
+    }
+};
+
+  
   const [isDonor, setIsDonor] = useState(null); // Track whether they are a donor or taker
   const [formData, setFormData] = useState({
     orgName: '',
+    peopleServed: '',
     address: '',
     contactPerson: '',
     phoneNumber: '',
@@ -30,6 +55,7 @@ export default function Details() {
     const newOrg = {
       name: formData.orgName,
       address: formData.address,
+      peopleServed: parseInt(formData.peopleServed, 10),
       contactPerson: formData.contactPerson,
       phoneNumber: formData.phoneNumber,
       email: formData.email,
@@ -100,6 +126,22 @@ export default function Details() {
                 />
               </div>
 
+
+              <div className="form-group">
+                
+                <label htmlFor="peopleServed">
+                  Meals Served (Donor) / Needed (Shelter)
+                </label>
+                <input
+                  id="peopleServed"
+                  name="peopleServed"
+                  type="number"
+                  value={formData.peopleServed}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
               {isDonor && (
                 <>
                   <div className="form-group">
@@ -127,6 +169,10 @@ export default function Details() {
 
               <div className="form-group">
                 <label htmlFor="address">Address</label>
+
+                {isLoaded &&
+                <StandaloneSearchBox onLoad={(ref) => inputRef.current = ref}
+                  onPlacesChanged= {handleOnPlacesChanged}>
                 <input
                   id="address"
                   name="address"
@@ -135,6 +181,9 @@ export default function Details() {
                   onChange={handleChange}
                   required
                 />
+                </StandaloneSearchBox>
+                }
+
               </div>
 
               <div className="form-group">

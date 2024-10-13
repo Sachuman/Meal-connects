@@ -1,7 +1,10 @@
+
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import React, { useState, useEffect } from 'react';
 import './ImpactTracker.css'; // Import the CSS file
 
 export default function ImpactTracker() {
+
   const [impactData, setImpactData] = useState({
     foodSaved: 0,
     mealsProvided: 0,
@@ -22,8 +25,8 @@ export default function ImpactTracker() {
     }
   };
 
-  const fetchedShelterData = async () => {
-    try {
+  const fetchedShelterData = async() => {
+    try{
       const response = await fetch('http://localhost:5001/shelters/');
       const data = await response.json();
       const mealsProvided = data.reduce((total, shelter) => total + shelter.peopleServed, 0);
@@ -33,8 +36,22 @@ export default function ImpactTracker() {
     }
   };
 
+  const getTimelineData = async () => {
+    try {
+        const response = await fetch('http://localhost:5001/timeline/');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data); // Ensure you're logging the received data
+        return data;
+    } catch (err) {
+        console.error('Error fetching timeline data:', err);
+    }
+};
   useEffect(() => {
     const fetchImpactData = async () => {
+
       const foodSaved = await fetchedFoodData();
       const mealsProvided = await fetchedShelterData();
       const co2Reduction = foodSaved * 2.5; // 2.5 kg of CO2 saved per kg of food
@@ -43,12 +60,18 @@ export default function ImpactTracker() {
         foodSaved,
         mealsProvided,
         co2Reduction,
-      });
-    };
+      })
+
+      const timelineData = await getTimelineData();
+      console.log(timelineData);
+      setGraphData(timelineData.reverse());
+
+    }
     fetchImpactData();
   }, []);
 
   return (
+    
     <div className="container">
       <h1>Impact Tracker</h1>
 
@@ -76,10 +99,30 @@ export default function ImpactTracker() {
       </div>
 
       {/* Optionally add graphs or charts for visualizing progress */}
-      <div className="mt-12 text-center">
-        <h3 className="text-xl font-bold mb-4">Visualize Your Impact</h3>
-        <p className="text-gray-600">Coming soon: Detailed graphs showing your impact over time.</p>
+      <div>
+        <h3>Visualize Your Impact</h3>
+        <div style={{height: "500px", display: "flex", justifyContent: "center"}}>
+          <ResponsiveContainer width="80%" height="100%">
+            <LineChart
+              data={graphData}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" tickMargin={10} />
+              <YAxis tickMargin={10}/>
+              <Tooltip />
+              <Legend 
+                layout="horizontal"      // Horizontal layout
+                verticalAlign="top"      // Place at the top of the chart
+                align="center"           // Center the legend horizontally
+              />
+              <Line type="monotone" dataKey="Food Saved (kg)" stroke="#57c26e" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="Meals Provided" stroke="#5795c2" />
+              <Line type="monotone" dataKey="CO2 Emissions Reduced (kg)" stroke="#ab9b49" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
+      
     </div>
   );
 }

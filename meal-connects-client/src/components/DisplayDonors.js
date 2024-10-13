@@ -45,8 +45,8 @@ export default function DisplayDonors() {
           {donors.map((donor) => (
             <div key={donor._id} className="donor-card">
               <div className="donor-details">
-                <h2 className="donor-name">{donor.address}</h2>
-                <p><strong>Address:</strong> {donor.foodType}</p>
+                <h2 className="donor-name">{donor.name}</h2>
+                <p><strong>Address:</strong> {donor.address}</p>
                 <p><strong>Cuisine:</strong> {donor.foodType}</p>
                 <p><strong>Amount:</strong> {donor.foodAmount} kg</p>
                 <p><strong>Contact:</strong> {donor.contactPerson}</p>

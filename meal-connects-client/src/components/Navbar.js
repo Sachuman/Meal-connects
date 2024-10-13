@@ -60,6 +60,11 @@ function Navbar() {
                                 Impact Tracker
                             </Link>
                         </li>
+                        <li className="nav-item">
+                            <Link to='/maps' className="nav-links" onClick={closeMobileMenu}>
+                                Google Maps
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </nav>
