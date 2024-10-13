@@ -1,0 +1,75 @@
+/* Home.css */
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+  }
+  
+  .home-card {
+    width: 100%;
+    max-width: 600px;
+    background: linear-gradient(to right, #f0faff, #e0f7fa);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .home-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .home-content {
+    padding: 40px;
+  }
+  .home-logo {
+    display: block;
+    margin: 0 auto 0px; /* Center the logo and add some bottom margin */
+    max-width: 50%; /* Ensure the logo is responsive */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  
+  .home-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .home-subtitle {
+    font-size: 18px;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #0f0000;
+  }
+  
+  .home-description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .home-button {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #0056b3;
+  }
+  
