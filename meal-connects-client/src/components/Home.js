@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css'; // Import the CSS file
-import logo from '../assets/MealConnect.jpeg'; // Correct import path
+import './Home.css'; 
+import logo from '../assets/MealConnect.jpeg';
 
 export default function Home() {
   return (

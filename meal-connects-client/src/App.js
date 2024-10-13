@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from "./components/Home";
 import Details from "./components/Details";
-import DisplayDonors from "./components/DisplayDonors"; // Renamed import for donor display
-import DisplayShelters from "./components/DisplayShelters"; // New import for shelter display
+import DisplayDonors from "./components/DisplayDonors"; 
+import DisplayShelters from "./components/DisplayShelters"; // 
 import Navbar from "./components/Navbar";
 import ImpactTracker from "./components/ImpactTracker";
 import GoogleMaps from "./components/GoogleMaps";

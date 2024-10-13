@@ -1,7 +1,7 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import React, { useState, useEffect } from 'react';
-import './ImpactTracker.css'; // Import the CSS file
+import './ImpactTracker.css'; // 
 
 export default function ImpactTracker() {
 
@@ -13,7 +13,7 @@ export default function ImpactTracker() {
 
   const [graphData, setGraphData] = useState([]);
 
-  // Fetching data from the server
+  // 
   const fetchedFoodData = async () => {
     try {
       const response = await fetch('http://localhost:5001/donors/');
@@ -43,7 +43,7 @@ export default function ImpactTracker() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data); // Ensure you're logging the received data
+        console.log(data); // 
         return data;
     } catch (err) {
         console.error('Error fetching timeline data:', err);
@@ -98,7 +98,6 @@ export default function ImpactTracker() {
         </div>
       </div>
 
-      {/* Optionally add graphs or charts for visualizing progress */}
       <div>
         <h3>Visualize Your Impact</h3>
         <div style={{height: "500px", display: "flex", justifyContent: "center"}}>

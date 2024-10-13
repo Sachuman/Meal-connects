@@ -6,8 +6,8 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false); // New state for minimizing
-
+  const [isMinimized, setIsMinimized] = useState(false);
+  
   const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
 
   const handleSubmit = async (e) => {
@@ -34,17 +34,17 @@ const Chatbot = () => {
   };
 
   return (
-    <div className={`chatbot ${isMinimized ? 'chatbot-minimized' : ''}`}> {/* Add conditional class */}
+    <div className={`chatbot ${isMinimized ? 'chatbot-minimized' : ''}`}> 
       <div className="chatbot-header">
         <h3>Food Facts Chatbot</h3>
         <button 
           className="chatbot-minimize-btn" 
           onClick={() => setIsMinimized(!isMinimized)}
         >
-          {isMinimized ? '▲' : '▼'} {/* Toggle icon */}
+          {isMinimized ? '▲' : '▼'} 
         </button>
       </div>
-      {!isMinimized && (  // Render chatbot content only when not minimized
+      {!isMinimized && ( 
         <>
           <div className="chatbot-messages">
             {chatHistory.map((chat, index) => (

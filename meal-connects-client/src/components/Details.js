@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Details.css'; // Import the CSS file
+import './Details.css'; 
 import { useJsApiLoader, StandaloneSearchBox} from '@react-google-maps/api';
 import { useRef } from 'react';
 
@@ -27,7 +27,7 @@ export default function Details() {
 };
 
   
-  const [isDonor, setIsDonor] = useState(null); // Track whether they are a donor or taker
+  const [isDonor, setIsDonor] = useState(null); 
   const [formData, setFormData] = useState({
     orgName: '',
     peopleServed: '',
@@ -38,7 +38,7 @@ export default function Details() {
     foodType: '', // Specific for donors
     foodAmount: '', // Specific for donors
   });
-  const navigate = useNavigate(); // Initialize navigation hook
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,7 +51,6 @@ export default function Details() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Create organization object based on user input
     const newOrg = {
       name: formData.orgName,
       address: formData.address,

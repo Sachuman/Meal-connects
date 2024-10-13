@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import logo from '../assets/MealConnect.jpeg'; // Correct import path
+import logo from '../assets/MealConnect.jpeg';
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
