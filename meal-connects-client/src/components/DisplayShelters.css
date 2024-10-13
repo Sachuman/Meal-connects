@@ -1,0 +1,62 @@
+.shelters-container {
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
+.title {
+    font-size: 2rem; /* Font size for the title */
+    font-weight: bold; /* Bold font for the title */
+    margin-bottom: 1.5rem; /* Space below the title */
+    text-align: center; /* Center align the title */
+}
+
+.error-message {
+    color: red; /* Red color for error messages */
+    text-align: center; /* Center align the error message */
+}
+
+.no-shelters-message {
+    text-align: center; /* Center align when no shelters are found */
+    color: gray; /* Gray color for the no shelters message */
+}
+
+.shelter-grid {
+    display: grid; /* Use grid layout for shelters */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid layout */
+    gap: 20px; /* Space between grid items */
+}
+
+.shelter-card {
+    background-color: white; /* White background for cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for card */
+    border-radius: 8px; /* Rounded corners for the card */
+    overflow: hidden; /* Prevent overflow of child elements */
+    border: 1px solid #e2e8f0; /* Light gray border around the card */
+}
+
+.shelter-details {
+    padding: 16px; /* Padding inside each shelter card */
+}
+
+.shelter-name {
+    font-size: 1.5rem; /* Larger font size for shelter name */
+    font-weight: bold; /* Bold font for the shelter name */
+    color: #28a745; /* Green color for the shelter name */
+    margin-bottom: 10px; /* Space below the shelter name */
+}
+
+.delete-button {
+    margin-top: 10px; /* Space above the delete button */
+    background-color: red; /* Red background for delete button */
+    color: white; /* White text for the button */
+    font-weight: bold; /* Bold font for button text */
+    padding: 8px 12px; /* Padding inside the button */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.delete-button:hover {
+    background-color: darkred; /* Darker red on hover for delete button */
+}
