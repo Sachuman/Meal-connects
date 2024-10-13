@@ -7,6 +7,7 @@ import DisplayDonors from "./components/DisplayDonors"; // Renamed import for do
 import DisplayShelters from "./components/DisplayShelters"; // New import for shelter display
 import Navbar from "./components/Navbar";
 import ImpactTracker from "./components/ImpactTracker";
+import GoogleMaps from "./components/GoogleMaps";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/display/donors" element={<DisplayDonors />} /> {/* Route for donor display */}
         <Route path="/display/shelters" element={<DisplayShelters />} /> {/* Route for shelter display */}
         <Route path="/tracker" element={<ImpactTracker />} />
+        <Route path="/maps" element={<GoogleMaps />} />
+
       </Routes>
     </Router>
   );

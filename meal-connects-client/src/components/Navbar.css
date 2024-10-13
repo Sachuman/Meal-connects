@@ -1,25 +1,15 @@
 /* General Navbar Styling */
 .navbar {
   background-color: #007bff;
-  height: 60px; /* Reduced height */
+  height: 80px; /* Reduced height */
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   font-size: 1rem; /* Adjust font size for compactness */
   position: sticky;
   top: 0;
   z-index: 999;
-}
-
-/* Container for Navbar items */
-.navbar-container {
-  display: flex;
-  justify-content: space-between; /* Space between logo and menu items */
-  align-items: center;
-  height: 60px; /* Reduced height */
-  max-width: 1200px; /* Reduced width for compact layout */
-  width: 100%; /* Full width */
-  padding: 0 20px; /* Padding inside the container */
+  padding-left: 30px;
 }
 
 /* Navbar Logo */
@@ -50,7 +40,8 @@
 }
 
 .nav-item {
-  height: 60px; /* Adjust item height */
+  height: 100%;
+  font-size: 1.2rem; /* Adjust font size */
 }
 
 .nav-links {

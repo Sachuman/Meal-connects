@@ -16,7 +16,7 @@ export default function ImpactTracker() {
   // Fetching data from the server
   const fetchedFoodData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/donors/');
+      const response = await fetch('http://localhost:5001/donors/');
       const data = await response.json();
       const foodSaved = data.reduce((total, donor) => total + donor.foodAmount, 0);
       return foodSaved;
@@ -27,7 +27,7 @@ export default function ImpactTracker() {
 
   const fetchedShelterData = async() => {
     try{
-      const response = await fetch('http://localhost:5000/shelters/');
+      const response = await fetch('http://localhost:5001/shelters/');
       const data = await response.json();
       const mealsProvided = data.reduce((total, shelter) => total + shelter.peopleServed, 0);
       return mealsProvided;
@@ -38,7 +38,7 @@ export default function ImpactTracker() {
 
   const getTimelineData = async () => {
     try {
-        const response = await fetch('http://localhost:5000/timeline/');
+        const response = await fetch('http://localhost:5001/timeline/');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

@@ -8,7 +8,7 @@ export default function DisplayDonors() {
   useEffect(() => {
     const fetchDonors = async () => {
       try {
-        const response = await fetch('http://localhost:5000/donors/');
+        const response = await fetch('http://localhost:5001/donors/');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -25,7 +25,7 @@ export default function DisplayDonors() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/donors/${id}`, {
+      await fetch(`http://localhost:5001/donors/${id}`, {
         method: 'DELETE',
       });
       setDonors(donors.filter(donor => donor._id !== id));
@@ -45,8 +45,8 @@ export default function DisplayDonors() {
           {donors.map((donor) => (
             <div key={donor._id} className="donor-card">
               <div className="donor-details">
-                <h2 className="donor-name">{donor.address}</h2>
-                <p><strong>Address:</strong> {donor.foodType}</p>
+                <h2 className="donor-name">{donor.name}</h2>
+                <p><strong>Address:</strong> {donor.address}</p>
                 <p><strong>Cuisine:</strong> {donor.foodType}</p>
                 <p><strong>Amount:</strong> {donor.foodAmount} kg</p>
                 <p><strong>Contact:</strong> {donor.contactPerson}</p>
