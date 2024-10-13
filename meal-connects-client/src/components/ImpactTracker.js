@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
+import ImpactChart from './ImpactChart';
 
 export default function ImpactTracker() {
+
   const [impactData, setImpactData] = useState({
     foodSaved: 0, 
     mealsProvided: 0, 
     co2Reduction: 0, 
   })
 
-  const [graphData, setGraphData] = useState([]);
+  const [timelineData, setTimelineData] = useState([]);
 
   //writing code for fetching data from the server and getting the data for impact
   const fetchedFoodData = async() =>{
@@ -24,7 +26,7 @@ export default function ImpactTracker() {
 
   }
 
-  const fetchedShelterData = async() =>{
+  const fetchedShelterData = async() => {
     try{
       const response = await fetch('http://localhost:5000/shelters/');
       const data = await response.json();
@@ -38,8 +40,22 @@ export default function ImpactTracker() {
 
   }
 
+  const getTimelineData = async () => {
+    try {
+        const response = await fetch('http://localhost:5000/timeline/');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data); // Ensure you're logging the received data
+        return data;
+    } catch (err) {
+        console.error('Error fetching timeline data:', err);
+    }
+};
   useEffect(() => {
     const fetchImpactData = async () => {
+
       const foodSaved = await fetchedFoodData();
       const mealsProvided = await fetchedShelterData();
       console.log(mealsProvided);
@@ -50,6 +66,11 @@ export default function ImpactTracker() {
         mealsProvided,
         co2Reduction,
       })
+
+      const timelineData = await getTimelineData();
+      console.log(timelineData);
+      setTimelineData(timelineData);
+
     }
     fetchImpactData();
 
@@ -88,6 +109,7 @@ export default function ImpactTracker() {
         <h3 className="text-xl font-bold mb-4">Visualize Your Impact</h3>
         <p className="text-gray-600">Coming soon: Detailed graphs showing your impact over time.</p>
       </div>
+      <ImpactChart data={timelineData} />
     </div>
   )
 }
