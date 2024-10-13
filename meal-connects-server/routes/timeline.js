@@ -39,15 +39,13 @@ const getTimelineData = async () => {
                     $dateToString: { format: "%Y-%m-%d", date: "$createdAt" }, // Group by day
                 },
                 totalFoodSaved: { $sum: "$foodAmount" },
-                totalCarbonSaved: { $sum: { $multiply: ["$foodAmount", 2.5] }}
+                totalCarbonSaved: { $sum: { $multiply: ["$foodAmount", 2.5] }} // Multiply for carbon savings
             },
         },
         {
             $sort: { _id: 1 }, // Sort by date
         },
     ]);
-
-    console.log(foodSavedData);
 
     // Aggregate people served from Shelter model
     const peopleServedData = await Shelter.aggregate([
@@ -69,8 +67,6 @@ const getTimelineData = async () => {
         },
     ]);
 
-    console.log(peopleServedData);
-
     // Populate the timelineTotals with data from foodSavedData
     foodSavedData.forEach(({ _id, totalFoodSaved, totalCarbonSaved }) => {
         timelineTotals[_id].totalFoodSaved = totalFoodSaved;
@@ -85,7 +81,9 @@ const getTimelineData = async () => {
     // Convert the timelineTotals object to an array for easier return
     return Object.keys(timelineTotals).map(date => ({
         date,
-        ...timelineTotals[date]
+        "Food Saved (kg)": timelineTotals[date].totalFoodSaved,
+        "People Served": timelineTotals[date].totalPeopleServed,
+        "Carbon Emissions Saved (kg)": timelineTotals[date].totalCarbonSaved
     }));
 };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ImpactChart from './ImpactChart';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function ImpactTracker() {
 
@@ -9,7 +9,7 @@ export default function ImpactTracker() {
     co2Reduction: 0, 
   })
 
-  const [timelineData, setTimelineData] = useState([]);
+  const [graphData, setGraphData] = useState([]);
 
   //writing code for fetching data from the server and getting the data for impact
   const fetchedFoodData = async() =>{
@@ -69,7 +69,7 @@ export default function ImpactTracker() {
 
       const timelineData = await getTimelineData();
       console.log(timelineData);
-      setTimelineData(timelineData);
+      setGraphData(timelineData.reverse());
 
     }
     fetchImpactData();
@@ -77,39 +77,61 @@ export default function ImpactTracker() {
   }, [])
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Impact Tracker</h1>
+    <div style={{height: "100%"}}>
+      <h1>Impact Tracker</h1>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div>
         {/* Total Food Saved */}
-        <div className="bg-green-100 shadow-lg rounded-lg p-6 text-center">
-          <h2 className="text-2xl font-bold text-green-600">Total Food Saved</h2>
-          <p className="text-5xl font-bold text-gray-800 mt-4">{impactData.foodSaved} kg</p>
-          <p className="text-gray-600 mt-2">of food saved from waste</p>
+        <div>
+          <h2>Total Food Saved</h2>
+          <p>{impactData.foodSaved} kg</p>
+          <p>of food saved from waste</p>
         </div>
 
         {/* Meals Provided */}
-        <div className="bg-blue-100 shadow-lg rounded-lg p-6 text-center">
-          <h2 className="text-2xl font-bold text-blue-600">Meals Provided</h2>
-          <p className="text-5xl font-bold text-gray-800 mt-4">{impactData.mealsProvided}</p>
-          <p className="text-gray-600 mt-2">meals served to shelters</p>
+        <div>
+          <h2>Meals Provided</h2>
+          <p>{impactData.mealsProvided}</p>
+          <p>meals served to shelters</p>
         </div>
 
         {/* CO2 Emission Reduction */}
-        <div className="bg-yellow-100 shadow-lg rounded-lg p-6 text-center">
-          <h2 className="text-2xl font-bold text-yellow-600">CO2 Emissions Reduced</h2>
-          <p className="text-5xl font-bold text-gray-800 mt-4">{impactData.co2Reduction} kg</p>
-          <p className="text-gray-600 mt-2">of CO2 saved</p>
+        <div>
+          <h2>CO2 Emissions Reduced</h2>
+          <p>{impactData.co2Reduction} kg</p>
+          <p>of CO2 saved</p>
         </div>
 
       </div>
       
       {/* Optionally add graphs or charts for visualizing progress */}
-      <div className="mt-12 text-center">
-        <h3 className="text-xl font-bold mb-4">Visualize Your Impact</h3>
-        <p className="text-gray-600">Coming soon: Detailed graphs showing your impact over time.</p>
+      <div>
+        <h3>Visualize Your Impact</h3>
+        <p>Coming soon: Detailed graphs showing your impact over time.</p>
+        <div style={{height: "500px", display: "flex", justifyContent: "center"}}>
+          <ResponsiveContainer width="80%" height="100%">
+            <LineChart
+              data={graphData}
+              margin={{
+                top: 20,
+                right: 30,
+                left: 20,
+                bottom: 20,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis margin={{bottom: 20}} dataKey="date" tickMargin={10} />
+              <YAxis tickMargin={10}/>
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="Food Saved (kg)" stroke="#8884d8" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="People Served" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="Carbon Emissions Saved (kg)" stroke="#82ca9d" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-      <ImpactChart data={timelineData} />
+      
     </div>
   )
 }
